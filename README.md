@@ -8,10 +8,11 @@ WTPA is a Web Application where you can view all the events that are happening i
 
 ## Feature List
 
-- OAuth Log-in with Google
-- Image Linking
-- Captions
-- Game pages to browse
+- Create Events
+- View Events
+- Delete Events
+- Edit Events
+- TBA
 
 ## Screenshots
 
