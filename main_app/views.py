@@ -4,15 +4,17 @@ from django.contrib.auth.forms import UserCreationForm
 import uuid
 import boto3 
 import os
-# from .models import Photo
+from .models import Event 
 
 # Create your views here.
-
 def home(request):
   return render(request, 'home.html')
 
 def about(request):
   return render(request, 'about.html')
+
+def events_index(request):
+  return render(request, 'events/index.html')
 
 def signup(request):
   error_message = ''

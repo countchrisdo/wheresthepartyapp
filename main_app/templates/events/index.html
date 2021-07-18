@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Event List</h1>
+
+{% for event in events %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ event.event_name }}</span>
+      <p>User: {{ event.user_name }}</p>
+      <p>Comment: {{ event.comment }}</p>
+        <p>Location: {{ event.location }}</p>
+        <p>Rating: {{ event.rating }}</p>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
