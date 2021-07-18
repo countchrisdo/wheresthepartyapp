@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+import uuid
+import boto3 
+import os
+# from .models import Photo
 
 # Create your views here.
 
