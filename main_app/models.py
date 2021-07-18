@@ -19,3 +19,6 @@ class Event(models.Model):
     comment = TextField(max_length=500)
     location = CharField(max_length=200)
     rating = IntegerField()
+
+    def __str__(self):
+        return self.event_name 
