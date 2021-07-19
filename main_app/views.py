@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 import uuid
 import boto3 
 import os
@@ -17,9 +19,21 @@ def events_index(request):
   events = Event.objects.all()
   return render(request, 'events/index.html', {'events': events})
 
-def event_detail(request, event_id):
-  event = Event.objects.get(id=event_id)
-  return render(request, 'events/detail.html', {'event': event})
+class EventDetail(DetailView):
+  model = Event
+
+class EventCreate(CreateView):
+  model = Event
+  fields = '__all__'
+  success_url = '/events'
+
+class EventUpdate(UpdateView):
+  model = Event
+  fields = '__all__'
+
+class EventDelete(DeleteView):
+  model = Event
+  success_url = '/events/'
 
 def signup(request):
   error_message = ''
