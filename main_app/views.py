@@ -8,6 +8,7 @@ import uuid
 import boto3 
 import os
 from .models import Event, Rating
+from .forms import RatingForm
 
 # Create your views here.
 def home(request):
@@ -18,15 +19,21 @@ def about(request):
 
 def events_index(request):
   events = Event.objects.all()
+  for event in events:
+    rating_avg = Rating.objects.filter(event_id=event.id).aggregate(Avg('rating'))
+    event.rating_avg = rating_avg['rating__avg']
   return render(request, 'events/index.html', {'events': events})
 
 class EventDetail(DetailView):
   model = Event
-
+  
   def get_context_data(self, **kwargs):
+    rating_form = RatingForm()
     rating_avg = Rating.objects.filter(event_id=self.kwargs['pk']).aggregate(Avg('rating'))
     context = super().get_context_data(**kwargs)
-    context['rating_avg'] = rating_avg['rating__avg'] 
+    context['rating_avg'] = rating_avg['rating__avg']
+    context['rating_form'] = rating_form 
+    
     return context 
 
 class EventCreate(CreateView):
