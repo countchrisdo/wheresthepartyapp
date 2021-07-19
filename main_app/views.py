@@ -3,10 +3,11 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django.db.models import Avg
 import uuid
 import boto3 
 import os
-from .models import Event 
+from .models import Event, Rating
 
 # Create your views here.
 def home(request):
@@ -21,6 +22,12 @@ def events_index(request):
 
 class EventDetail(DetailView):
   model = Event
+
+  def get_context_data(self, **kwargs):
+    rating_avg = Rating.objects.filter(event_id=self.kwargs['pk']).aggregate(Avg('rating'))
+    context = super().get_context_data(**kwargs)
+    context['rating_avg'] = rating_avg['rating__avg'] 
+    return context 
 
 class EventCreate(CreateView):
   model = Event
@@ -40,6 +47,16 @@ class EventUpdate(UpdateView):
 class EventDelete(DeleteView):
   model = Event
   success_url = '/events/'
+
+def add_rating(request, event_id):
+  # create a ModelForm instance using the data in the posted form
+  form = RatingForm(request.POST)
+  # validate the data
+  if form.is_valid():
+    new_rating = form.save(commit=False)
+    new_rating.event_id = event_id
+    new_rating.save()
+  return redirect('detail', event_id=event_id)
 
 def signup(request):
   error_message = ''

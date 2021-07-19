@@ -1,9 +1,20 @@
 from django.db import models
+from django.forms.models import inlineformset_factory
 from django.urls import reverse
 from django.db.models.fields import CharField, IntegerField, TextField
 # from django.forms.widgets import Textarea
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
+
+RATINGS = (
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5)
+)
+
 
 # Create your models here.
 
@@ -16,9 +27,7 @@ from django.contrib.auth.models import User
 
 class Event(models.Model):
     event_name = CharField(max_length=200)
-    # comment = TextField(max_length=500)
     location = CharField(max_length=200)
-    # rating = IntegerField(default=5)
     description = TextField(max_length=500)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
@@ -36,7 +45,11 @@ class Comment(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
 class Rating(models.Model):
-    rating = IntegerField(default=5)
+    # rating = IntegerField(default=5,validators=[MinValueValidator(1), MaxValueValidator(5)] )
+    rating = IntegerField(
+        choices=RATINGS,
+        default=RATINGS[4][0]
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
