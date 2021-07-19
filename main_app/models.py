@@ -8,11 +8,11 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 RATINGS = (
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 5)
+    ("1", 1),
+    ("2", 2),
+    ("3", 3),
+    ("4", 4),
+    ("5", 5)
 )
 
 
@@ -45,15 +45,10 @@ class Comment(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
 class Rating(models.Model):
-    # rating = IntegerField(default=5,validators=[MinValueValidator(1), MaxValueValidator(5)] )
-    rating = IntegerField(
+    rating = models.IntegerField(
         choices=RATINGS,
-        default=RATINGS[4][0]
+        default=RATINGS[0][0]
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-
-
-
-
 
