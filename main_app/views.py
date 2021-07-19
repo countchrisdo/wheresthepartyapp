@@ -24,8 +24,14 @@ class EventDetail(DetailView):
 
 class EventCreate(CreateView):
   model = Event
-  fields = '__all__'
+  fields = ['event_name', 'location', 'description']
   success_url = '/events'
+
+  def form_valid(self, form):
+    # Assign the logged in user (self.request.user)
+    form.instance.user = self.request.user  
+    # Let the CreateView do its job as usual
+    return super().form_valid(form)
 
 class EventUpdate(UpdateView):
   model = Event
