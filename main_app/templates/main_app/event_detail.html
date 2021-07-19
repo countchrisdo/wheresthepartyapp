@@ -12,6 +12,11 @@
       <p>Location: {{ event.location }}</p>
       <p>Rating: {{ event.rating }}</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'events_update' event.id %}">Edit</a>
+    <a href="{% url 'events_delete' event.id %}">Delete</a>
+  </div>
+
 </div>
 
 {% endblock %}
