@@ -58,12 +58,15 @@ class EventDelete(DeleteView):
 def add_rating(request, event_id):
   # create a ModelForm instance using the data in the posted form
   form = RatingForm(request.POST)
+  print(form)
   # validate the data
   if form.is_valid():
     new_rating = form.save(commit=False)
     new_rating.event_id = event_id
+    new_rating.user_id = request.user.id
     new_rating.save()
-  return redirect('detail', event_id=event_id)
+  return redirect('detail', pk=event_id)
+  
 
 def signup(request):
   error_message = ''

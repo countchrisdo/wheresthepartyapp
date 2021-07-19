@@ -8,13 +8,12 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 RATINGS = (
-    ("1", 1),
-    ("2", 2),
-    ("3", 3),
-    ("4", 4),
-    ("5", 5)
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5)
 )
-
 
 # Create your models here.
 
