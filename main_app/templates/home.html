@@ -2,29 +2,35 @@
 
 {% block content %}
 
-<section id="LandingPage">
-<p>Welcome to the landing page!</p>
+ <div class="row">
+    <div class="col s6">
+    <h2>Great Features!</h2>
+        
+        <i class="large material-icons">camera_alt</i>
+        <p>Photo Uploads</p>
+        <i class="large material-icons">forum</i>
+        <p>Comments</p>
+        <i class="large material-icons">gps_fixed</i>
+        <p>Location based data</p>
+    </div>
+    <div class="col s6">
+    <h2>About our App</h2>
+        <p>Wanted to know what's poppin' in your area but have felt out of the loop? Nevermore, with Where's the Part App! You'll never not know where the party's at! Created with django framework and materialize CSS, this responsive website is your one stop shop to know what's going on in your area</p>
+        
+    </div>
+</div>
+          
 
-<h2>About our App</h2>
-<p>This is the about page of the app. It is a good place to describe the app and what it does.</p>
-
-
-<h2>Great Features!</h2>
-<ul>
-    <li>First feature</li>
-    <li>Second feature</li>
-    <li>Third feature</li>
-</ul>
-</section>
-
-<section id="FeaturedEvents">
+<div class="card-panel row light-blue lighten-5">
     <h2>Featured Events</h2>
     
-    <div> <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/irving-redesign/Events_Page_Header_2903ed9c-40c1-4f6c-9a69-70bb8415295b.jpg" width="500vm"> </div>
-    <div> <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/irving-redesign/Events_Page_Header_2903ed9c-40c1-4f6c-9a69-70bb8415295b.jpg" width="500vm"> </div>
-    <div> <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/irving-redesign/Events_Page_Header_2903ed9c-40c1-4f6c-9a69-70bb8415295b.jpg" width="500vm"> </div>
+    <div class="col s4"> <img class="responsive-img" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/irving-redesign/Events_Page_Header_2903ed9c-40c1-4f6c-9a69-70bb8415295b.jpg" > </div>
 
-</section>
+    <div class="col s4"> <img class="responsive-img" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/irving-redesign/Events_Page_Header_2903ed9c-40c1-4f6c-9a69-70bb8415295b.jpg" > </div>
+
+    <div class="col s4"> <img class="responsive-img" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/irving-redesign/Events_Page_Header_2903ed9c-40c1-4f6c-9a69-70bb8415295b.jpg"> </div>
+
+</div>
 
 
 {% endblock %}
