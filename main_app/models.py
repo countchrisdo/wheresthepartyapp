@@ -7,6 +7,8 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+from django_gravatar.helpers import get_gravatar_url, has_gravatar, get_gravatar_profile_url, calculate_gravatar_hash
+
 RATINGS = (
     (1, 1),
     (2, 2),
@@ -57,3 +59,17 @@ class Rating(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for event_id: {self.event_id} @{self.url}"
+
+
+
+# url = get_gravatar_url('alice@example.com', size=150)
+# gravatar_exists = has_gravatar('bob@example.com')
+# profile_url = get_gravatar_profile_url('alice@example.com')
+# email_hash = calculate_gravatar_hash('alice@example.com')
