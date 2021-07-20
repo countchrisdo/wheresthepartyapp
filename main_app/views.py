@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.urls.base import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.db.models import Avg
 import uuid
 import boto3 
 import os
-from .models import Event, Rating
+from .models import Comment, Event, Rating
 from .forms import RatingForm, CommentForm
 
 # Create your views here.
@@ -76,8 +77,27 @@ def add_comment(request, event_id):
     new_comment.user_id = request.user.id
     new_comment.save()
   return redirect('detail', pk=event_id)
-  
 
+class CommentUpdate(UpdateView):
+  model = Comment
+  fields = ['comment']
+  success_url = '/events/'
+
+  def get_success_url(self):
+    obj = self.get_object()
+    return reverse('detail', kwargs={'pk': obj.event.id})
+
+class CommentDelete(DeleteView):
+  model = Comment
+  success_url = '/events/'
+  
+  def get_success_url(self):
+    obj = self.get_object()
+    return reverse('detail', kwargs={'pk': obj.event.id})
+
+class CommentDetail(DetailView):
+    model = Comment
+ 
 def signup(request):
   error_message = ''
   if request.method == 'POST':
