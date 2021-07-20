@@ -29,6 +29,7 @@ class Event(models.Model):
     location = CharField(max_length=200)
     description = TextField(max_length=500)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # event_date = models.DateField(auto_now=False, auto_now_add=False)
     
 
     def __str__(self):
@@ -36,6 +37,9 @@ class Event(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'pk': self.id})
+
+    # class Meta:
+    #     ordering = ['-event_date']
 
 class Comment(models.Model):
     comment = TextField(max_length=280)
