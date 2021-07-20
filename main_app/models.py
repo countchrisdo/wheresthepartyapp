@@ -40,6 +40,7 @@ class Event(models.Model):
 class Comment(models.Model):
     comment = TextField(max_length=280)
     date = models.DateField(auto_now_add=True)
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
@@ -50,4 +51,3 @@ class Rating(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-
