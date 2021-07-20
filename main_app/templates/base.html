@@ -9,12 +9,14 @@
   <title>WTPA</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
-<body>
+
+<body class="center-align blue lighten-5">
     <header class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper blue">
                 <ul>
                     <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Where's the Party App?!&nbsp;&nbsp;</a></li>
                   </ul>
@@ -27,7 +29,7 @@
                     <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
                     {% if user.is_authenticated %}
                         {% comment %} <li><a href="{% url 'events_create' %}">Create Event</a></li> {% endcomment %}
-                        <li><a href="{% url 'logout' %}">Log Out</a></li>
+                        <li><a href="{% url 'logout' %}"><i class="large material-icons">power_settings_new</i></a></li>
                     {% else %}
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
@@ -35,16 +37,26 @@
                 </ul>
             </div>
         </nav>
+
+
+        
     </header>
-  <main class="container">
+  <main class="container blue lighten-4">
 
     {% block content %}
-
     {% endblock %}
   
   </main>
-  <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2021 Scrumdog Millionaires &nbsp;</div>
-  </footer>
+
+
+<footer class="page-footer blue">
+
+  <div class="footer-copyright">
+    <div class="container">
+    © 2021 Scrumdog Millionaires &nbsp;
+    <a class="grey-text text-lighten-4 right" href="https://www.youtube.com/watch?v=7J2s8ykarZI">A link</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
