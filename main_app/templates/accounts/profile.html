@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Profile Page</h1>
+
+{% for event in events %}
+
+  <div class="card ">
+    <a href="{% url 'detail' event.id %}">
+      <div class="card-content">
+        <span class="card-title">{{ event.event_name }}</span>
+        <p>Host: {{ event.user }}</p>
+        <p>Location: {{ event.location }}</p>
+        <p>Rating: {{ event.rating_avg|floatformat }} Stars</p>
+      </div>
+    </a>
+  </div>
+
+  {% empty %}
+      <div class="card-panel teal-text center-align">You haven't create any Events yet!</div>
+{% endfor %}
+
+{% endblock %}

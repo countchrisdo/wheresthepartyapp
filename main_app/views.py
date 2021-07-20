@@ -4,11 +4,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls.base import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Avg
 import uuid
 import boto3 
 import os
-from .models import Comment, Event, Rating
+from .models import Comment, Event, Rating, Photo
 from .forms import RatingForm, CommentForm
 
 # Create your views here.
@@ -17,6 +19,13 @@ def home(request):
 
 def about(request):
   return render(request, 'about.html')
+
+def profile(request):
+  events = Event.objects.filter(user=request.user)
+  for event in events:
+    rating_avg = Rating.objects.filter(event_id=event.id).aggregate(Avg('rating'))
+    event.rating_avg = rating_avg['rating__avg']
+  return render(request, 'accounts/profile.html', {'events': events})
 
 def events_index(request):
   events = Event.objects.all()
@@ -39,7 +48,7 @@ class EventDetail(DetailView):
     
     return context 
 
-class EventCreate(CreateView):
+class EventCreate(LoginRequiredMixin, CreateView):
   model = Event
   fields = ['event_name', 'location', 'description']
   success_url = '/events'
@@ -58,6 +67,7 @@ class EventDelete(DeleteView):
   model = Event
   success_url = '/events/'
 
+@login_required
 def add_rating(request, event_id):
   # create a ModelForm instance using the data in the posted form
   form = RatingForm(request.POST)
@@ -69,6 +79,7 @@ def add_rating(request, event_id):
     new_rating.save()
   return redirect('detail', pk=event_id)
 
+@login_required
 def add_comment(request, event_id):
   form = CommentForm(request.POST)
   if form.is_valid():
@@ -78,7 +89,7 @@ def add_comment(request, event_id):
     new_comment.save()
   return redirect('detail', pk=event_id)
 
-class CommentUpdate(UpdateView):
+class CommentUpdate(LoginRequiredMixin, UpdateView):
   model = Comment
   fields = ['comment']
   success_url = '/events/'
@@ -87,7 +98,7 @@ class CommentUpdate(UpdateView):
     obj = self.get_object()
     return reverse('detail', kwargs={'pk': obj.event.id})
 
-class CommentDelete(DeleteView):
+class CommentDelete(LoginRequiredMixin, DeleteView):
   model = Comment
   success_url = '/events/'
   
@@ -103,7 +114,9 @@ def signup(request):
   if request.method == 'POST':
     form = UserCreationForm(request.POST)
     if form.is_valid():
-      user = form.save()
+      user = form.save(commit=False)
+      user.email = request.POST.get("email")
+      user.save() 
       login(request, user)
       return redirect('/')
     else:
@@ -111,3 +124,19 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+@login_required
+def add_photo(request, event_id):
+  photo_file = request.FILES.get('photo-file', None)
+  if photo_file:
+    s3 = boto3.client('s3')
+    key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+    try:
+        bucket = os.environ['S3_BUCKET']
+        s3.upload_fileobj(photo_file, bucket, key)
+        # build the full url string
+        url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+        Photo.objects.create(url=url, event_id=event_id)
+    except:
+        print('An error occurred uploading file to S3')
+  return redirect('detail', pk=event_id)
