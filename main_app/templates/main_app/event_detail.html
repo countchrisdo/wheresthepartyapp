@@ -19,16 +19,24 @@
       <br>
 
     {% if event.rating_set.all %}
-      <p>Rating: {{ rating_avg|floatformat:2 }}</p>
+      <p>Rating: {{ rating_avg|floatformat }}</p>
     {% else %}
       <div class="card-panel teal-text center-align">No Ratings</div>
     {% endif %}
 
+     <form method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <input type="submit" class="btn" value="Add Comment">
+    </form>
+
     <div class="col s6">
+      {% if event.comment_set.all %}
       <table class="striped">
         <thead>
           <tr><th>Comment</th><th>Date</th><th>User</th></tr>
         </thead>
+        
         <tbody>
           {% for comment in event.comment_set.all %}
             <tr>
@@ -38,9 +46,16 @@
             </tr>
           {% endfor %}
         </tbody>
+       {% else %}
+        <div class="card-panel teal-text center-align">No Comments Yet</div>
+    {% endif %}
       </table>
+      
     </div>
+    
   </div>
+
+
   <div class="card-action">
     <a href="{% url 'events_update' event.id %}">Edit</a>
     <a href="{% url 'events_delete' event.id %}">Delete</a>
