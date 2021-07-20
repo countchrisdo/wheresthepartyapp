@@ -44,9 +44,11 @@ class Event(models.Model):
 class Comment(models.Model):
     comment = TextField(max_length=280)
     date = models.DateField(auto_now_add=True)
-    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse('comments_detail', kwargs={'pk': self.id})
 
 class Rating(models.Model):
     rating = models.IntegerField(
