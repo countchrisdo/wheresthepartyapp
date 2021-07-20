@@ -24,7 +24,7 @@
       <div class="card-panel teal-text center-align">No Ratings</div>
     {% endif %}
 
-     <form method="post">
+     <form action="{% url 'add_comment' event.id %}" method="POST">
     {% csrf_token %}
     {{ comment_form.as_p }}
     <input type="submit" class="btn" value="Add Comment">
