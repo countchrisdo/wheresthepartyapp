@@ -8,7 +8,7 @@ import uuid
 import boto3 
 import os
 from .models import Event, Rating
-from .forms import RatingForm
+from .forms import RatingForm, CommentForm
 
 # Create your views here.
 def home(request):
@@ -29,10 +29,12 @@ class EventDetail(DetailView):
   
   def get_context_data(self, **kwargs):
     rating_form = RatingForm()
+    comment_form = CommentForm()
     rating_avg = Rating.objects.filter(event_id=self.kwargs['pk']).aggregate(Avg('rating'))
     context = super().get_context_data(**kwargs)
     context['rating_avg'] = rating_avg['rating__avg']
     context['rating_form'] = rating_form 
+    context['comment_form'] = comment_form
     
     return context 
 
@@ -58,13 +60,21 @@ class EventDelete(DeleteView):
 def add_rating(request, event_id):
   # create a ModelForm instance using the data in the posted form
   form = RatingForm(request.POST)
-  print(form)
   # validate the data
   if form.is_valid():
     new_rating = form.save(commit=False)
     new_rating.event_id = event_id
     new_rating.user_id = request.user.id
     new_rating.save()
+  return redirect('detail', pk=event_id)
+
+def add_comment(request, event_id):
+  form = CommentForm(request.POST)
+  if form.is_valid():
+    new_comment = form.save(commit=False)
+    new_comment.event_id = event_id
+    new_comment.user_id = request.user.id
+    new_comment.save()
   return redirect('detail', pk=event_id)
   
 
