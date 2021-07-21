@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.enums import Choices
 from django.forms.models import inlineformset_factory
 from django.urls import reverse
 from django.db.models.fields import CharField, IntegerField, TextField
@@ -17,22 +18,30 @@ RATINGS = (
     (5, 5)
 )
 
+AGERATINGS = (
+    ('G', 'General Admission'),
+    ('PG-13', 'Teens 13+'),
+    ('18', 'Adults 18+'),
+    ('21', 'Adults 21+')
+)
+
 # Create your models here.
-
-# class Photo(models.Model):
-#     url = models.CharField(max_length=200)
-#     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return f"Photo for event_id: {self.event_id} @{self.url}"
 
 class Event(models.Model):
     event_name = CharField(max_length=200)
     location = CharField(max_length=200)
     description = TextField(max_length=500)
+    date = models.DateField(auto_now=False, auto_now_add=False)
+    hours_of_op = CharField(max_length=150,default='7:30am - 9:30pm')
+    vac_required = models.BooleanField(default=False)
+    admission_fee = IntegerField(default=0)
+    age_rating = models.CharField(
+        'Age Rating',
+        max_length=10,
+        choices=AGERATINGS,
+        default=AGERATINGS[0][0]
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # event_date = models.DateField(auto_now=False, auto_now_add=False)
-    
 
     def __str__(self):
         return self.event_name 
@@ -40,8 +49,8 @@ class Event(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'pk': self.id})
 
-    # class Meta:
-    #     ordering = ['-event_date']
+    class Meta:
+        ordering = ['-date']
 
 class Comment(models.Model):
     comment = TextField(max_length=280)

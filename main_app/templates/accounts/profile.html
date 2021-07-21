@@ -1,8 +1,24 @@
 {% extends 'base.html' %}
-
 {% block content %}
+{% load gravatar %}
 
-<h1>Profile Page</h1>
+<h2> Profile Page </h2>
+<hr>
+
+{% if user.email %}
+<div class="col s3">
+    <div class="avatar" >{% gravatar user.email 150 %}
+    </div>
+     <h2>{{ user.name }}</h2>
+    <p>{{ user.email }}</p>
+  {% endif %}
+
+
+{% comment %} {% gravatar_url user.email 150 %} {% endcomment %}
+
+
+
+
 
 {% for event in events %}
 
