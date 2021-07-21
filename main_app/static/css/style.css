@@ -9,6 +9,10 @@ body {
     height: 25vh;
   }
 
+  #map-container {
+    margin: 0 15px;
+  }
+
   main {
     flex: 1 0 auto;
   }

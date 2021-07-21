@@ -42,6 +42,7 @@ class EventDetail(DetailView):
     comment_form = CommentForm()
     rating_avg = Rating.objects.filter(event_id=self.kwargs['pk']).aggregate(Avg('rating'))
     context = super().get_context_data(**kwargs)
+    context['api_key'] = os.environ['MAP_API_KEY']
     context['rating_avg'] = rating_avg['rating__avg']
     context['rating_form'] = rating_form 
     context['comment_form'] = comment_form
@@ -50,7 +51,7 @@ class EventDetail(DetailView):
 
 class EventCreate(LoginRequiredMixin, CreateView):
   model = Event
-  fields = ['event_name', 'location', 'description','date','hours_of_op', 'covid_protocol', 'admission_fee', 'age_rating']
+  fields = ['event_name', 'address', 'description','date','hours_of_op', 'covid_protocol', 'admission_fee', 'age_rating']
   success_url = '/events'
 
   def form_valid(self, form):

@@ -8,70 +8,70 @@
     <span class="card-title"><b>{{ event.event_name }}</b></span>
   </div>
 
-   <!-- Insert photo markup below this comment -->
-    {% for photo in event.photo_set.all %}
-      <img class="responsive-img card-panel" src="{{photo.url}}">
-    {% empty %}
-      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endfor %}
+  <!-- Insert photo markup below this comment -->
+  {% for photo in event.photo_set.all %}
+  <img class="responsive-img card-panel" src="{{photo.url}}">
+  {% empty %}
+  <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+  {% endfor %}
 
-{% if user == event.user %}
-    <form action="{% url 'add_photo' event.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+  {% if user == event.user %}
+  <form action="{% url 'add_photo' event.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
     {% csrf_token %}
     <input type="file" name="photo-file">
     <br><br>
     <input type="submit" class="btn" value="Upload Photo">
-{% endif %}
-</form>
-  
-<h5>Host: {{ event.user }}</h5>
-<h5>Full Address: {{ event.location }}</h5>
-<h5>Description: {{ event.description }}</h5>
+    {% endif %}
+  </form>
+
+  <h5>Host: {{ event.user }}</h5>
+  <h5>Full Address: {{ event.address }}</h5>
+  <h5>Description: {{ event.description }}</h5>
 
   <div class="row">
     <div class="col s6">
-    
-    <h5>Date: {{ event.date }}</h5>
-    <h5>Time: {{ event.hours_of_op }}</h5>
-    <h5>Price: {{ event.admission_fee }}</h5>
-   
-   </div>
-   <div class="col s6">
-   
-    <h5>Covid Protocol: {{ event.covid_protocol }}</h5>
-    <h5>Age Rating: {{ event.age_rating }}</h5>
+
+      <h5>Date: {{ event.date }}</h5>
+      <h5>Time: {{ event.hours_of_op }}</h5>
+      <h5>Price: {{ event.admission_fee }}</h5>
+
+    </div>
+    <div class="col s6">
+
+      <h5>Covid Protocol: {{ event.covid_protocol }}</h5>
+      <h5>Age Rating: {{ event.age_rating }}</h5>
     </div>
   </div>
-<div class="row center-align">
-  <div id="map"></div>
-</div>
-<div class="row center-align">
-  <div class="col s6 offset-m3 offset-14">
-    {% if event.rating_set.all %}
+  <div id="map-container" class="row center-align">
+    <div id="map">No Map Available</div>
+  </div>
+  <div class="row center-align">
+    <div class="col s6 offset-m3 offset-14">
+      {% if event.rating_set.all %}
       <h5>Rating: {{ rating_avg|floatformat }}</h5>
       {% else %}
       <div class="card-panel teal-text center-align">No Ratings</div>
       {% endif %}
-  </div>
-</div>
-
-<div class="row">
-<div class="col s9">
-    <form action="{% url 'add_comment' event.id %}" method="POST">
-      {% csrf_token %}
-      {{ comment_form.as_p }}
-      <input type="submit" class="btn" value="Add Comment">
-    </form>
-</div>
-
-<div class="col s3">
-    <form action="{% url 'add_rating' event.id %}" method="POST">
-      {% csrf_token %}
-      {{ rating_form.as_p }}
-      <input type="submit" class="btn" value="Add Rating">
-    </form>
     </div>
-</div>
+  </div>
+
+  <div class="row">
+    <div class="col s9">
+      <form action="{% url 'add_comment' event.id %}" method="POST">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" class="btn" value="Add Comment">
+      </form>
+    </div>
+
+    <div class="col s3">
+      <form action="{% url 'add_rating' event.id %}" method="POST">
+        {% csrf_token %}
+        {{ rating_form.as_p }}
+        <input type="submit" class="btn" value="Add Rating">
+      </form>
+    </div>
+  </div>
 
   <div>
     {% if event.comment_set.all %}
@@ -91,7 +91,8 @@
           <td>{{comment.date}}</td>
           <td>{{comment.user}}</td>
           <td><a href="{% url 'update_comment' comment.id %}"><i class="small material-icons">update</i></a></td>
-          <td><a href="{% url 'delete_comment' comment.id %}"><i class="small material-icons">delete_forever</i></a></td>
+          <td><a href="{% url 'delete_comment' comment.id %}"><i class="small material-icons">delete_forever</i></a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
@@ -102,24 +103,47 @@
   </div>
 </div>
 
-  <div class="card-action">
-    <a href="{% url 'events_update' event.id %}">Edit Event</a>
-    <a href="{% url 'events_delete' event.id %}">Delete Event</a>
-  </div>
+<div class="card-action">
+  <a href="{% url 'events_update' event.id %}">Edit Event</a>
+  <a href="{% url 'events_delete' event.id %}">Delete Event</a>
+</div>
 
 </div>
 
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoz9sSl_Av4723CPHLHkhGLZO1aT8f81I">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoz9sSl_Av4723CPHLHkhGLZO1aT8f81I">
 </script>
 
 <script>
   const selectEl = document.getElementById("id_rating");
   M.FormSelect.init(selectEl);
 
-  const address = "{{ event.location }}";
+  const address = "{{ event.address }}";
+  const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key={{ api_key }}`;
+  let geoResults, validAddress;
+  fetch(geoUrl).then(res => res.json())
+    .then(data => {
+      validAddress = data.status === "OK";
+      if (validAddress) geoResults = data.results[0];
+      console.log(geoResults, validAddress)
+    })
+    .then(() => {
+      if (validAddress) {
+        let location = geoResults.geometry.location;
+        let map;
+        map = new google.maps.Map(
+          document.getElementById("map"),
+          {
+            center: location,
+              zoom: 12,
+          }
+        );
+        const marker = new google.maps.Marker({
+          position: location,
+          map: map,
+        });
+      }
+    })
 
-  const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=2217%20rocky%20mountain%20ave%20loveland%20co&key=AIzaSyBoz9sSl_Av4723CPHLHkhGLZO1aT8f81I`;
 
 </script>
 

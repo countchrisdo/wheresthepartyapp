@@ -7,8 +7,6 @@ from django.db.models.fields import CharField, IntegerField, TextField
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django_google_maps import fields as map_fields
-from django_google_maps import widgets as map_widgets
 
 from django_gravatar.helpers import get_gravatar_url, has_gravatar, get_gravatar_profile_url, calculate_gravatar_hash
 
