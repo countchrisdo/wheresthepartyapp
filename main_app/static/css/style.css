@@ -4,6 +4,7 @@ body {
     flex-direction: column;
     text-align: center;
   }
+
   
   main {
     flex: 1 0 auto;

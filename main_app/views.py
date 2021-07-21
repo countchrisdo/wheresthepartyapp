@@ -50,7 +50,7 @@ class EventDetail(DetailView):
 
 class EventCreate(LoginRequiredMixin, CreateView):
   model = Event
-  fields = ['event_name', 'location', 'description']
+  fields = ['event_name', 'location', 'description','date','hours_of_op', 'vac_required', 'admission_fee', 'age_rating']
   success_url = '/events'
 
   def form_valid(self, form):
@@ -127,6 +127,7 @@ def signup(request):
 
 @login_required
 def add_photo(request, event_id):
+  
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
     s3 = boto3.client('s3')
