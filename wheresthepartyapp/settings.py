@@ -22,6 +22,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main_app',
+    'materializeform',
     'django_gravatar',
     'django.contrib.admin',
     'django.contrib.auth',

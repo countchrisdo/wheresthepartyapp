@@ -19,11 +19,18 @@ RATINGS = (
 )
 
 AGERATINGS = (
-    ('G', 'General Admission'),
-    ('PG-13', 'Teens 13+'),
-    ('18', 'Adults 18+'),
-    ('21', 'Adults 21+')
+    ('General Admission', 'General Admission'),
+    ('Teens 13+', 'Teens 13+'),
+    ('Adults 18+', 'Adults 18+'),
+    ('Adults 21+', 'Adults 21+')
 )
+
+PROTOCOL = (
+    ('Nothing Specified', 'Nothing Specified'),
+    ('Vaccination Required', 'Vaccination Required'),
+    ('Mask Required Indoors', 'Mask Required Indoors'),
+    ('Vaccination and Masks Required Indoors', 'Vaccination and Masks Required Indoors'),
+)    
 
 # Create your models here.
 
@@ -33,11 +40,19 @@ class Event(models.Model):
     description = TextField(max_length=500)
     date = models.DateField(auto_now=False, auto_now_add=False)
     hours_of_op = CharField(max_length=150,default='7:30am - 9:30pm')
-    vac_required = models.BooleanField(default=False)
-    admission_fee = IntegerField(default=0)
+
+    covid_protocol = models.CharField(
+        'Covid Protocol',
+        max_length=50,
+        choices=PROTOCOL,
+        default='Nothing Specified'
+        )
+
+    admission_fee = models.CharField(max_length=100,default='$5.00')
+
     age_rating = models.CharField(
         'Age Rating',
-        max_length=10,
+        max_length=50,
         choices=AGERATINGS,
         default=AGERATINGS[0][0]
     )

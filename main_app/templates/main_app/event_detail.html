@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Event Details</h1>
+<h2>Event Details</h2>
 
 <div class="card">
   <div class="card-content">
-    <span class="card-title">{{ event.event_name }}</span>
-  <div>
+    <span class="card-title"><b>{{ event.event_name }}</b></span>
+  </div>
 
    <!-- Insert photo markup below this comment -->
     {% for photo in event.photo_set.all %}
@@ -22,19 +22,37 @@
     <br><br>
     <input type="submit" class="btn" value="Upload Photo">
 {% endif %}
-
 </form>
   
+<h5>Host: {{ event.user }}</h5>
+<h5>Location: {{ event.location }}</h5>
+<h5>Description: {{ event.description }}</h5>
+
+  <div class="row">
+    <div class="col s6">
+    
+    <h5>Date: {{ event.date }}</h5>
+    <h5>Time: {{ event.hours_of_op }}</h5>
+    <h5>Price: {{ event.admission_fee }}</h5>
+   
+   </div>
+   <div class="col s6">
+   
+    <h5>Covid Protocol: {{ event.covid_protocol }}</h5>
+    <h5>Age Rating: {{ event.age_rating }}</h5>
+    </div>
   </div>
 
-    <h5>Host: {{ event.user }}</h5>
-    <h5>Location: {{ event.location }}</h5>
+<div class="row center-align">
+  <div class="col s6 offset-m3 offset-14">
     {% if event.rating_set.all %}
-    <h5>Rating: {{ rating_avg|floatformat }}</h5>
-    {% else %}
-    <div class="card-panel teal-text center-align">No Ratings</div>
-    {% endif %}
-    
+      <h5>Rating: {{ rating_avg|floatformat }}</h5>
+      {% else %}
+      <div class="card-panel teal-text center-align">No Ratings</div>
+      {% endif %}
+  </div>
+</div>
+
 <div class="row">
 <div class="col s9">
     <form action="{% url 'add_comment' event.id %}" method="POST">
@@ -44,7 +62,7 @@
     </form>
 </div>
 
-    <div class="col s3">
+<div class="col s3">
     <form action="{% url 'add_rating' event.id %}" method="POST">
       {% csrf_token %}
       {{ rating_form.as_p }}

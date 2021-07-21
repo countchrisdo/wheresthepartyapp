@@ -14,10 +14,6 @@
 
   <script>
 
-  const booleEl = document.getElementById('id_vac_required');
-  
-  {% comment %} M.formSelect.init(booleEl); {% endcomment %}
-
  const dateEl = document.getElementById('id_date');
   M.Datepicker.init(dateEl, {
     format: 'yyyy-mm-dd',
@@ -26,10 +22,11 @@
     autoClose: true
   });
 
-  const selectEl = document.getElementById("id_age_rating");
-  M.FormSelect.init(selectEl);
-  
-  
+const select2El = document.getElementById("id_covid_protocol");
+M.FormSelect.init(select2El);
+
+const selectEl = document.getElementById("id_age_rating");
+M.FormSelect.init(selectEl);
 
 
 

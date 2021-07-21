@@ -50,7 +50,7 @@ class EventDetail(DetailView):
 
 class EventCreate(LoginRequiredMixin, CreateView):
   model = Event
-  fields = ['event_name', 'location', 'description','date','hours_of_op', 'vac_required', 'admission_fee', 'age_rating']
+  fields = ['event_name', 'location', 'description','date','hours_of_op', 'covid_protocol', 'admission_fee', 'age_rating']
   success_url = '/events'
 
   def form_valid(self, form):
