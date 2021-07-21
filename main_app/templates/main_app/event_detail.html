@@ -25,7 +25,7 @@
 </form>
   
 <h5>Host: {{ event.user }}</h5>
-<h5>Location: {{ event.location }}</h5>
+<h5>Full Address: {{ event.location }}</h5>
 <h5>Description: {{ event.description }}</h5>
 
   <div class="row">
@@ -42,7 +42,9 @@
     <h5>Age Rating: {{ event.age_rating }}</h5>
     </div>
   </div>
-
+<div class="row center-align">
+  <div id="map"></div>
+</div>
 <div class="row center-align">
   <div class="col s6 offset-m3 offset-14">
     {% if event.rating_set.all %}
@@ -107,9 +109,18 @@
 
 </div>
 
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoz9sSl_Av4723CPHLHkhGLZO1aT8f81I">
+</script>
+
 <script>
   const selectEl = document.getElementById("id_rating");
   M.FormSelect.init(selectEl);
+
+  const address = "{{ event.location }}";
+
+  const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=2217%20rocky%20mountain%20ave%20loveland%20co&key=AIzaSyBoz9sSl_Av4723CPHLHkhGLZO1aT8f81I`;
+
 </script>
 
 {% endblock %}

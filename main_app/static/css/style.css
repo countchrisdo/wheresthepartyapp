@@ -5,6 +5,10 @@ body {
     text-align: center;
   }
 
+  #map {
+    height: 25vh;
+  }
+
   main {
     flex: 1 0 auto;
   }
