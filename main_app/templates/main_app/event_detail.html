@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Event Details</h2>
-
 <div class="card">
   <div class="card-content">
-    <span class="card-title"><b>{{ event.event_name }}</b></span>
+    <span class="card-title" id="detail-h1"><b>{{ event.event_name }}</b></span>
   </div>
 
   <!-- Insert photo markup below this comment -->
@@ -24,9 +22,13 @@
     {% endif %}
   </form>
 
-  <h5>Host: {{ event.user }}</h5>
-  <h5>Full Address: {{ event.address }}</h5>
-  <h5>Description: {{ event.description }}</h5>
+  <h5>Event Host: {{ event.user }}</h5>
+  <br>
+  <hr>
+  <h5>Event Description: <br><br> {{ event.description }}</h5>
+  <br>
+
+  <hr>
 
   <div class="row">
     <div class="col s6">
@@ -42,6 +44,7 @@
       <h5>Age Rating: {{ event.age_rating }}</h5>
     </div>
     <h5>Price: {{ event.admission_fee }}</h5>
+    <h5>Full Address: {{ event.address }}</h5>
   </div>
   <div id="map-container" class="row center-align">
     <div id="map">No Map Available</div>
@@ -49,7 +52,8 @@
   <div class="row center-align">
     <div class="col s6 offset-m3 offset-14">
       {% if event.rating_set.all %}
-      <h5>Rating: {{ rating_avg|floatformat }}</h5>
+      <h5><i class="small material-icons">star</i><br> {{ rating_avg|floatformat }}</h5>
+      
       {% else %}
       <div class="card-panel teal-text center-align">No Ratings</div>
       {% endif %}

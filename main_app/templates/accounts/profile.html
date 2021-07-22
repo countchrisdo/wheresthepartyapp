@@ -1,14 +1,36 @@
 {% extends 'base.html' %} {% block content %} {% load gravatar %}
 
-<h2>Profile Page</h2>
+<h2>{{ user.username }}'s Profile Page</h2>
 <hr />
 
 {% if user.email %}
 <div class="col s3">
   <div class="avatar">{% gravatar user.email 150 %}</div>
-  <h2>{{ user.name }}</h2>
-  <p>{{ user.email }}</p>
-  {% endif %} {% comment %} {% gravatar_url user.email 150 %} {% endcomment %}
+  
+   <details>
+    <summary>
+      <b>{{ user.username }}'s Profile
+        <i class="material-icons">info_outline</i>
+        More Info</b>
+
+    </summary>
+    <div class="card-panel grey lighten-3">
+      <p>
+        <b>Name:</b> {{ user.username }}
+      </p>
+      <p>
+
+        <b>Email:</b> {{ user.email }}
+      </p>
+    </div>
+  </details> 
+{% else %}
+
+  <h2>{{ user.username }}</h2>
+  <p> No email provided </p>
+  <p> if you want a profile picture, please add an email address to your profile </p>
+
+{% endif %} 
   {% for event in events %}
 
   <div class="card center-align">
@@ -32,5 +54,11 @@
   <div class="card-panel teal-text center-align">
     You haven't create any Events yet!
   </div>
-  {% endfor %} {% endblock %}
-</div>
+  {% endfor %} 
+  
+
+
+  
+  {% endblock %}
+
+  
