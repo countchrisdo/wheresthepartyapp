@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<h1>Where's The Party App?!</h1>
+
  <div class="row">
     <div class="col s6">
     <h2>Great Features!</h2>
@@ -25,19 +27,28 @@
 </div>
 
 
+<section>
+<h1><u>Featured Events</u></h1>
 
-<div class="card-panel row light-blue lighten-5">
-
-    <h2>Featured Events</h2>
-    {% for event in events|slice:"0:3" %}
-    <div class="col s4 card"> 
-    <a href="{% url 'detail' event.id %}">
-            <img class="carousel-item" src="{{event.photo_set.first.url}}" height="150vh"><br>
-            <span class="card-title">{{ event.event_name }}</span>
-        </div>
-    </a>
-    {% endfor %}
+<div class="carousel carousel-slider light-blue lighten-5">
+    
+{% for event in events|slice:"0:3" %}
+        <a class="carousel-item" href="{% url 'detail' event.id %}">
+            <div class="card">
+                <div class="card-image">
+                    <img class="" src="{{event.photo_set.first.url}}">
+                </div>
+                
+                <br>
+                <div class="card-content">
+                <h4>{{ event.event_name }}<h4>
+                </div>
+            </div>
+        </a>
+{% endfor %}
 </div>
+
+</section>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -1,29 +1,42 @@
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  #map {
-    height: 15vh;
-  }
-
-  #map-container {
-    margin: 0 15vmin;
-  }
-
-  main {
-    flex: 1 0 auto;
-  }
-
-  td {
-    font-size: large;
-}
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  text-align: center;
   
-  footer.page-footer {
-    margin-top: 10px;
-    padding-top: 0px;
-    text-align: right;
-  }
+}
 
+
+
+.carousel .carousel-item {
+  width: 340px !important;
+  padding: 20px;
+}
+
+.card {
+  border-radius: 8px;
+  position: relative !important;
+  
+}
+
+#map {
+  height: 30vh;
+}
+
+#map-container {
+  margin: 0 5vmin;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+td {
+  font-size: large;
+}
+
+footer.page-footer {
+  margin-top: 10px;
+  padding-top: 0px;
+  text-align: right;
+}

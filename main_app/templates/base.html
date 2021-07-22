@@ -2,61 +2,104 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>WTPA</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>WTPA</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
 
-<body class="center-align blue lighten-5">
+  <body class="center-align blue lighten-5">
     <header class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper blue">
-                <ul>
-                  <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Where's the Party App?!&nbsp;&nbsp;</a></li>
-                  </ul>
-                  <ul class="right">
-                  <li><a href="{% url 'about' %}">About Us</a></li>
-                  
-                  <li><a href="{% url 'index' %}">View All Events</a></li>
-                    
-                    {% if user.is_authenticated %}
-                      <li><a href="{% url 'events_create' %}">Add an Event</a></li>
-                      <li><a href="{% url 'profile' %}"><i class="large material-icons">account_circle</i></a></li>
-                        <li><a href="{% url 'logout' %}"><i class="large material-icons">power_settings_new</i></a></li>
-                    {% else %}
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}">Log In</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
-    
+      <nav>
+        <div class="nav-wrapper blue">
+          <ul>
+            <li>
+              <a href="{% url 'home' %}" class="left brand-logo"
+                >&nbsp;&nbsp;WTPA!?&nbsp;&nbsp;</a
+              >
+            </li>
+          </ul>
+          <ul class="right">
+            <li>
+              <form
+                class="search-form"
+                method="POST"
+                action="{% url 'search_events' %}"
+              >
+                {% csrf_token %}
+                <div class="input-field">
+                  <input
+                    type="search"
+                    name="searched"
+                    placeholder="Search Events"
+                  />
+                  <label class="label-icon" for="search"
+                    ><i class="material-icons">search</i></label
+                  >
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </li>
+
+            <li><a href="{% url 'about' %}">About Us</a></li>
+
+            <li><a href="{% url 'index' %}">View All Events</a></li>
+
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'events_create' %}">Add an Event</a></li>
+            <li>
+              <a href="{% url 'profile' %}"
+                ><i class="large material-icons">account_circle</i></a
+              >
+            </li>
+            <li>
+              <a href="{% url 'logout' %}"
+                ><i class="large material-icons">power_settings_new</i></a
+              >
+            </li>
+            {% else %}
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
     </header>
-  <main class="container blue lighten-4">
+    <main class="container blue lighten-4 center-align">
+      {% block content %}
+      {% endblock %}
+    </main>
 
-    {% block content %}
-    {% endblock %}
-  
-  </main>
+    <footer class="page-footer blue">
+      <div class="footer-copyright">
+        <div class="container">
+          © 2021 Scrumdog Millionaires &nbsp;
 
+          <a
+            class="grey-text text-lighten-4 right"
+            href="https://www.youtube.com/watch?v=7J2s8ykarZI"
+            >A link</a
+          >
 
-<footer class="page-footer blue">
-
-  <div class="footer-copyright">
-    <div class="container">
-    © 2021 Scrumdog Millionaires &nbsp;
-    
-    <a class="grey-text text-lighten-4 right" href="https://www.youtube.com/watch?v=7J2s8ykarZI">A link</a> 
-    
-    <img src="https://a.slack-edge.com/production-standard-emoji-assets/13.0/google-large/1f9d1-200d-1f9af@2x.png" width="25px" height="25px" alt="blind leading the blind">
-    </div>
-  </div>
-</footer>
-</body>
+          <img
+            src="https://a.slack-edge.com/production-standard-emoji-assets/13.0/google-large/1f9d1-200d-1f9af@2x.png"
+            width="25px"
+            height="25px"
+            alt="blind leading the blind"
+          />
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

@@ -1,40 +1,36 @@
-{% extends 'base.html' %}
-{% block content %}
-{% load gravatar %}
+{% extends 'base.html' %} {% block content %} {% load gravatar %}
 
-<h2> Profile Page </h2>
-<hr>
+<h2>Profile Page</h2>
+<hr />
 
 {% if user.email %}
 <div class="col s3">
-    <div class="avatar" >{% gravatar user.email 150 %}
-    </div>
-     <h2>{{ user.name }}</h2>
-    <p>{{ user.email }}</p>
-  {% endif %}
+  <div class="avatar">{% gravatar user.email 150 %}</div>
+  <h2>{{ user.name }}</h2>
+  <p>{{ user.email }}</p>
+  {% endif %} {% comment %} {% gravatar_url user.email 150 %} {% endcomment %}
+  {% for event in events %}
 
-
-{% comment %} {% gravatar_url user.email 150 %} {% endcomment %}
-
-
-
-
-
-{% for event in events %}
-
-  <div class="card ">
+  <div class="card center-align">
     <a href="{% url 'detail' event.id %}">
-      <div class="card-content">
+      <div class="card-content center-align">
         <span class="card-title">{{ event.event_name }}</span>
         <p>Host: {{ event.user }}</p>
-        <p>Location: {{ event.location }}</p>
+        <p>Address: {{ event.address }}</p>
         <p>Rating: {{ event.rating_avg|floatformat }} Stars</p>
+
+      <img
+        class="responsive-img card-panel"
+        src="{{event.photo_set.first.url}}"
+        width="75%"
+        />
       </div>
     </a>
   </div>
 
   {% empty %}
-      <div class="card-panel teal-text center-align">You haven't create any Events yet!</div>
-{% endfor %}
-
-{% endblock %}
+  <div class="card-panel teal-text center-align">
+    You haven't create any Events yet!
+  </div>
+  {% endfor %} {% endblock %}
+</div>
