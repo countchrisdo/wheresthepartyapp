@@ -1,36 +1,46 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
+<h1>Create your Event!</h1>
+<h3>Thank you for sharing your upcoming event on<br> <b>Where's the Party App!?</b></h3>
 
-  <!-- Leaving the action empty makes the form post to the same url used to display it -->
-  <form action="" method="post">
-    <!-- Django requires the following for security purposes -->
-    {% csrf_token %}
-    <table>
-      <!-- Render the inputs inside of <tr>s & <td>s -->
-      {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit!" class="btn">
-  </form>
+<details>
+<summary>Need help?</summary>
+<h5> Want to make sure your event can be discovered by the most amount of people?</h5>
+ <blockquote class="">
+<ul class="flow-text">
+<li>- Make sure your address is correct and written in a standard format</li>
+<li>- <i>Search</i> uses your event's name and description so make sure to use useful <i>Keywords</i> to help your event stand out! </li>
+<li>- Don't forget to have fun</li>
+</ul>
+ </blockquote >
+</details>
 
-  <script>
 
- const dateEl = document.getElementById('id_date');
+<!-- Leaving the action empty makes the form post to the same url used to display it -->
+<form id="Event-Creation-Form" action="" method="post">
+  <!-- Django requires the following for security purposes -->
+  {% csrf_token %}
+  <table>
+    <!-- Render the inputs inside of <tr>s & <td>s -->
+    {{ form.as_table }}
+  </table>
+  <input id="event-submit"type="submit" value="Submit!" class="btn" />
+</form>
+
+<script>
+  const dateEl = document.getElementById("id_date");
   M.Datepicker.init(dateEl, {
-    format: 'yyyy-mm-dd',
+    format: "yyyy-mm-dd",
     defaultDate: new Date(),
     setDefaultDate: true,
-    autoClose: true
+    autoClose: true,
   });
 
-const select2El = document.getElementById("id_covid_protocol");
-M.FormSelect.init(select2El);
+  const select2El = document.getElementById("id_covid_protocol");
+  M.FormSelect.init(select2El);
 
-const selectEl = document.getElementById("id_age_rating");
-M.FormSelect.init(selectEl);
-
-
-
+  const selectEl = document.getElementById("id_age_rating");
+  M.FormSelect.init(selectEl);
 </script>
 
 {% endblock %}

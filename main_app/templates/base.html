@@ -32,8 +32,7 @@
           </ul>
           <ul class="right">
             <li>
-              <form
-                class="search-form"
+              <form id="search-bar"
                 method="POST"
                 action="{% url 'search_events' %}"
               >
@@ -45,9 +44,9 @@
                     placeholder="Search Events"
                   />
                   <label class="label-icon" for="search"
-                    ><i class="material-icons">search</i></label
+                    ><i class="material-icons nav-icons">search</i></label
                   >
-                  <i class="material-icons">close</i>
+                  
                 </div>
               </form>
             </li>
@@ -84,12 +83,12 @@
     <footer class="page-footer blue">
       <div class="footer-copyright">
         <div class="container">
-          © 2021 Scrumdog Millionaires &nbsp;
+          <a class="footerlink" href="https://github.com/countchrisdo/wheresthepartyapp">© 2021 Scrumdog Millionaires &nbsp;</a>
 
           <a
             class="grey-text text-lighten-4 right"
             href="https://www.youtube.com/watch?v=7J2s8ykarZI"
-            >A link</a
+            > <i class="small material-icons">whatshot</i></a
           >
 
           <img
