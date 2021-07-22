@@ -23,18 +23,28 @@
         
     </div>
 </div>
-          
+
+
 
 <div class="card-panel row light-blue lighten-5">
+
     <h2>Featured Events</h2>
-    
-    <div class="col s4"> <img class="responsive-img" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/irving-redesign/Events_Page_Header_2903ed9c-40c1-4f6c-9a69-70bb8415295b.jpg" > </div>
-
-    <div class="col s4"> <img class="responsive-img" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/irving-redesign/Events_Page_Header_2903ed9c-40c1-4f6c-9a69-70bb8415295b.jpg" > </div>
-
-    <div class="col s4"> <img class="responsive-img" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/irving-redesign/Events_Page_Header_2903ed9c-40c1-4f6c-9a69-70bb8415295b.jpg"> </div>
-
+    {% for event in events|slice:"0:3" %}
+    <div class="col s4 card"> 
+    <a href="{% url 'detail' event.id %}">
+            <img class="carousel-item" src="{{event.photo_set.first.url}}" height="150vh"><br>
+            <span class="card-title">{{ event.event_name }}</span>
+        </div>
+    </a>
+    {% endfor %}
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elements = document.querySelector('.carousel');
+        var instances = M.Carousel.init(elements, {});
+    })
+</script>
 
 {% endblock %}
+

@@ -33,7 +33,7 @@
 
       <h5>Date: {{ event.date }}</h5>
       <h5>Time: {{ event.hours_of_op }}</h5>
-      <h5>Price: {{ event.admission_fee }}</h5>
+
 
     </div>
     <div class="col s6">
@@ -41,6 +41,7 @@
       <h5>Covid Protocol: {{ event.covid_protocol }}</h5>
       <h5>Age Rating: {{ event.age_rating }}</h5>
     </div>
+    <h5>Price: {{ event.admission_fee }}</h5>
   </div>
   <div id="map-container" class="row center-align">
     <div id="map">No Map Available</div>
@@ -90,8 +91,10 @@
           <td>{{ comment.comment }}</td>
           <td>{{comment.date}}</td>
           <td>{{comment.user}}</td>
+          {% if user == comment.user %}
           <td><a href="{% url 'update_comment' comment.id %}"><i class="small material-icons">update</i></a></td>
           <td><a href="{% url 'delete_comment' comment.id %}"><i class="small material-icons">delete_forever</i></a>
+          {% endif %}
           </td>
         </tr>
         {% endfor %}
@@ -104,8 +107,10 @@
 </div>
 
 <div class="card-action">
-  <a href="{% url 'events_update' event.id %}">Edit Event</a>
+  {% if user == event.user %}
+  <a href="{% url 'events_update' event.id %}">Edit Event</a> |
   <a href="{% url 'events_delete' event.id %}">Delete Event</a>
+  {% endif %}
 </div>
 
 </div>
@@ -143,8 +148,6 @@
         });
       }
     })
-
-
 </script>
 
 {% endblock %}
