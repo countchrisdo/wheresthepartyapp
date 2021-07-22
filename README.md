@@ -4,15 +4,19 @@
 
 WTPA is a Web Application where you can view all the events that are happening in your city and around the world! 
 
-/Depoyment Link TBA/
+[CLICK ME!](https://wheresthepartyapp.herokuapp.com/)
 
 ## Feature List
 
-- Create Events
-- View Events
-- Delete Events
-- Edit Events
-- TBA
+- Create and Edits Events
+- Upload Images
+- Search Events
+- View All Events
+- View Event Details
+- View Event's Location
+- Add Comments and speak to event co-ordinators
+- View your profile to manage your created events
+
 
 ## Screenshots
 
@@ -24,14 +28,33 @@ WTPA is a Web Application where you can view all the events that are happening i
 - Materialize CSS
 - Django
 - Amazon S3
+- Google Maps API
+- Javascript
+- Python
+- Postgresql
+- Heroku
 
 ## Getting Started
-- /Depoyment Link TBA/
+- Make an account and broswe the site!
+- https://wheresthepartyapp.herokuapp.com/
 
 ### Planning
 - [Trello Board](https://trello.com/b/vHUmJ3kK/wheres-the-party-app)
 
+### Meet the Team
+- [Chris @countchrisdo](https://github.com/countchrisdo)
+- [Andy @sunsetdee](https://github.com/sunsetdee)
+- [Jeremy @jhotz2112](https://github.com/jhotz2112)
+
 ### What's next for WTPA?
-- Google Maps API
-- TBA
+- ~~Google Maps Api~~
+- ~~Search Bar~~
+- ~~User Authentication~~
+- ~~User Profile~~
+- Search by Region
+- Users can check in/out
+- Users can edit their profile
+- Users can click stars to rate events
+- Sorting by by different criteria
+
 

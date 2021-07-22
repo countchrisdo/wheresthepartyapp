@@ -2,10 +2,13 @@
 
 {% block content %}
 
-<h1>Event List</h1>
+{% if searched %}
+<h2>
+    You searched for {{ searched }} 
+</h2>
 
 {% for event in events %}
-  <div class="card">
+<div class="card">
     <a href="{% url 'detail' event.id %}">
       <div class="card-content">
         <span class="card-title">{{ event.event_name }}</span>
@@ -13,13 +16,23 @@
         <p>Address: {{ event.address }}</p>
         <p>Rating: {{ event.rating_avg|floatformat }} Stars</p>
         
-        <img class="responsive-img card-panel" src="{{event.photo_set.first.url}}" width= "75%">
+        <img class="responsive-img card-panel" src="{{event.photo_set.first.url}}" width= "50%">
         
       </div>
     </a>
   </div>
-</section>
+
+{% empty %}
+
+<h2>No events found</h2>
 
 {% endfor %}
+
+{% else %}
+<h1 class="alert alert-danger">
+    <strong>Error!</strong> You have not searched for any term
+</h1>
+
+{% endif %}
 
 {% endblock %}

@@ -20,4 +20,6 @@ urlpatterns = [
     path('comments/<int:pk>/update/', views.CommentUpdate.as_view(), name='update_comment'),
 
     path('accounts/signup/', views.signup, name='signup'),
+
+    path('search_events', views.search_events, name='search_events'),
 ]

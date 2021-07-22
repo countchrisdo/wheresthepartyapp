@@ -144,3 +144,13 @@ def add_photo(request, event_id):
     except:
         print('An error occurred uploading file to S3')
   return redirect('detail', pk=event_id)
+
+def search_events(request):
+  if request.method == 'POST':
+    searched = request.POST['searched']
+    events = Event.objects.filter(description__icontains=searched)
+    events = events | Event.objects.filter(event_name__icontains=searched)
+    return render(request, 'events/search_events.html',{'searched':searched, 'events':events})
+  else:
+    return render(request, 'events/search_events.html',{})
+  
