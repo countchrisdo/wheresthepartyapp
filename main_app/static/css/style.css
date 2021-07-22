@@ -3,11 +3,7 @@ body {
   min-height: 100vh;
   flex-direction: column;
   text-align: center;
-  
 }
-
-
-
 
 #search-bar {
   position: fixed;
@@ -16,8 +12,6 @@ body {
   width: 25%;
   height: 40px;
   background-color: rgba(255, 255, 255, 0);
-  
-  
 }
 
 .nav-icons {
@@ -25,7 +19,6 @@ body {
   bottom: 93.5%;
   left: 25%;
 }
-
 
 #featured-events-title {
   font-size: 5m;
@@ -41,7 +34,7 @@ body {
   padding: 20px;
 }
 
-#detail-h1 { 
+#detail-h1 {
   font-size: 3.5em;
   font-weight: bold;
   padding: 10px;
@@ -79,7 +72,6 @@ body {
 .card {
   border-radius: 8px;
   position: relative !important;
-  
 }
 
 #map {

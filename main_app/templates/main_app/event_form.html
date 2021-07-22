@@ -1,20 +1,29 @@
 {% extends 'base.html' %} {% block content %}
 
 <h1>Create your Event!</h1>
-<h3>Thank you for sharing your upcoming event on<br> <b>Where's the Party App!?</b></h3>
+<h3>
+  Thank you for sharing your upcoming event on<br />
+  <b>Where's the Party App!?</b>
+</h3>
 
 <details>
-<summary>Need help?</summary>
-<h5> Want to make sure your event can be discovered by the most amount of people?</h5>
- <blockquote class="">
-<ul class="flow-text">
-<li>- Make sure your address is correct and written in a standard format</li>
-<li>- <i>Search</i> uses your event's name and description so make sure to use useful <i>Keywords</i> to help your event stand out! </li>
-<li>- Don't forget to have fun</li>
-</ul>
- </blockquote >
+  <summary>Need help?</summary>
+  <h5>
+    Want to make sure your event can be discovered by the most amount of people?
+  </h5>
+  <blockquote class="">
+    <ul class="flow-text">
+      <li>
+        - Make sure your address is correct and written in a standard format
+      </li>
+      <li>
+        - <i>Search</i> uses your event's name and description so make sure to
+        use useful <i>Keywords</i> to help your event stand out!
+      </li>
+      <li>- Don't forget to have fun</li>
+    </ul>
+  </blockquote>
 </details>
-
 
 <!-- Leaving the action empty makes the form post to the same url used to display it -->
 <form id="Event-Creation-Form" action="" method="post">
@@ -24,7 +33,7 @@
     <!-- Render the inputs inside of <tr>s & <td>s -->
     {{ form.as_table }}
   </table>
-  <input id="event-submit"type="submit" value="Submit!" class="btn" />
+  <input id="event-submit" type="submit" value="Submit!" class="btn" />
 </form>
 
 <script>

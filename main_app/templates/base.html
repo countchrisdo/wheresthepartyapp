@@ -32,7 +32,8 @@
           </ul>
           <ul class="right">
             <li>
-              <form id="search-bar"
+              <form
+                id="search-bar"
                 method="POST"
                 action="{% url 'search_events' %}"
               >
@@ -46,7 +47,6 @@
                   <label class="label-icon" for="search"
                     ><i class="material-icons nav-icons">search</i></label
                   >
-                  
                 </div>
               </form>
             </li>
@@ -76,19 +76,23 @@
       </nav>
     </header>
     <main class="container blue lighten-4 center-align">
-      {% block content %}
-      {% endblock %}
+      {% block content %} {% endblock %}
     </main>
 
     <footer class="page-footer blue">
       <div class="footer-copyright">
         <div class="container">
-          <a class="footerlink" href="https://github.com/countchrisdo/wheresthepartyapp">© 2021 Scrumdog Millionaires &nbsp;</a>
+          <a
+            class="footerlink"
+            href="https://github.com/countchrisdo/wheresthepartyapp"
+            >© 2021 Scrumdog Millionaires &nbsp;</a
+          >
 
           <a
             class="grey-text text-lighten-4 right"
             href="https://www.youtube.com/watch?v=7J2s8ykarZI"
-            > <i class="small material-icons">whatshot</i></a
+          >
+            <i class="small material-icons">whatshot</i></a
           >
 
           <img
