@@ -15,11 +15,13 @@ from .forms import RatingForm, CommentForm
 
 # Create your views here.
 def home(request):
-  return render(request, 'home.html')
+  events = Event.objects.order_by('?')
+  return render(request, 'home.html', {'events': events})
 
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def profile(request):
   events = Event.objects.filter(user=request.user)
   for event in events:
@@ -60,11 +62,11 @@ class EventCreate(LoginRequiredMixin, CreateView):
     # Let the CreateView do its job as usual
     return super().form_valid(form)
 
-class EventUpdate(UpdateView):
+class EventUpdate(LoginRequiredMixin, UpdateView):
   model = Event
   fields = '__all__'
 
-class EventDelete(DeleteView):
+class EventDelete(LoginRequiredMixin, DeleteView):
   model = Event
   success_url = '/events/'
 

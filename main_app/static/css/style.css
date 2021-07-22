@@ -6,11 +6,11 @@ body {
   }
 
   #map {
-    height: 25vh;
+    height: 15vh;
   }
 
   #map-container {
-    margin: 0 15px;
+    margin: 0 15vmin;
   }
 
   main {

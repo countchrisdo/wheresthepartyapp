@@ -14,10 +14,10 @@ urlpatterns = [
     path('events/<int:event_id>/add_rating/', views.add_rating, name='add_rating'),
     path('events/<int:event_id>/add_comment/', views.add_comment, name='add_comment'),
     path('events/<int:pk>/', views.CommentDetail.as_view(), name='comments_detail'),
-    path('comments/<int:pk>/delete/', views.CommentDelete.as_view(), name='delete_comment'),
-    path('comments/<int:pk>/update/', views.CommentUpdate.as_view(), name='update_comment'),
     path('events/<int:event_id>/add_photo/', views.add_photo, name='add_photo'),
 
-    path('accounts/signup/', views.signup, name='signup'),
+    path('comments/<int:pk>/delete/', views.CommentDelete.as_view(), name='delete_comment'),
+    path('comments/<int:pk>/update/', views.CommentUpdate.as_view(), name='update_comment'),
 
+    path('accounts/signup/', views.signup, name='signup'),
 ]
