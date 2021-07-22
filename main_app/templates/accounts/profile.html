@@ -6,32 +6,29 @@
 {% if user.email %}
 <div class="col s3">
   <div class="avatar">{% gravatar user.email 150 %}</div>
-  
-   <details>
-    <summary>
-      <b>{{ user.username }}'s Profile
-        <i class="material-icons">info_outline</i>
-        More Info</b>
 
+  <details>
+    <summary>
+      <b
+        >{{ user.username }}'s Profile
+        <i class="material-icons">info_outline</i>
+        More Info</b
+      >
     </summary>
     <div class="card-panel grey lighten-3">
-      <p>
-        <b>Name:</b> {{ user.username }}
-      </p>
-      <p>
-
-        <b>Email:</b> {{ user.email }}
-      </p>
+      <p><b>Name:</b> {{ user.username }}</p>
+      <p><b>Email:</b> {{ user.email }}</p>
     </div>
-  </details> 
-{% else %}
+  </details>
+  {% else %}
 
   <h2>{{ user.username }}</h2>
-  <p> No email provided </p>
-  <p> if you want a profile picture, please add an email address to your profile </p>
+  <p>No email provided</p>
+  <p>
+    if you want a profile picture, please add an email address to your profile
+  </p>
 
-{% endif %} 
-  {% for event in events %}
+  {% endif %} {% for event in events %}
 
   <div class="card center-align">
     <a href="{% url 'detail' event.id %}">
@@ -41,10 +38,10 @@
         <p>Address: {{ event.address }}</p>
         <p>Rating: {{ event.rating_avg|floatformat }} Stars</p>
 
-      <img
-        class="responsive-img card-panel"
-        src="{{event.photo_set.first.url}}"
-        width="75%"
+        <img
+          class="responsive-img card-panel"
+          src="{{event.photo_set.first.url}}"
+          width="75%"
         />
       </div>
     </a>
@@ -54,11 +51,5 @@
   <div class="card-panel teal-text center-align">
     You haven't create any Events yet!
   </div>
-  {% endfor %} 
-  
-
-
-  
-  {% endblock %}
-
-  
+  {% endfor %} {% endblock %}
+</div>
