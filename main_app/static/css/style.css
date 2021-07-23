@@ -5,6 +5,7 @@ body {
   text-align: center;
 }
 
+/* position hard coded for chrome */
 #search-bar {
   position: fixed;
   top: 1%;
@@ -37,7 +38,7 @@ body {
 
 .carousel .carousel-item {
   width: 340px !important;
-  padding: 20px;
+  padding: 10px;
 }
 
 #detail-h1 {

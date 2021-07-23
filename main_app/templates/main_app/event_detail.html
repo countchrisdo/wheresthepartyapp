@@ -6,7 +6,7 @@
     <b><span class="card-title" id="detail-h1">{{ event.event_name }}</span></b>
   </div>
 
-  <!-- Insert photo markup below this comment -->
+  <!-- photo markup -->
   {% for photo in event.photo_set.all %}
   <img class="responsive-img card-panel" src="{{photo.url}}">
   {% empty %}
@@ -32,11 +32,8 @@
 
   <div class="row">
     <div class="col s6">
-
       <h5>Date: {{ event.date }}</h5>
       <h5>Time: {{ event.hours_of_op }}</h5>
-
-
     </div>
     <div class="col s6">
 
@@ -46,6 +43,7 @@
     <h5>Price: {{ event.admission_fee }}</h5>
     <h5>Full Address: {{ event.address }}</h5>
   </div>
+  {% comment %} google map is rendered here {% endcomment %}
   <div id="map-container" class="row center-align">
     <div id="map">No Map Available</div>
   </div>
@@ -77,7 +75,7 @@
       </form>
     </div>
   </div>
-
+{% comment %} comment section {% endcomment %}
   <div>
     {% if event.comment_set.all %}
     <table class="striped">
@@ -119,6 +117,7 @@
 
 </div>
 
+{% comment %} javascript section {% endcomment %}
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoz9sSl_Av4723CPHLHkhGLZO1aT8f81I">
 </script>
 

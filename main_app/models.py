@@ -90,10 +90,3 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"Photo for event_id: {self.event_id} @{self.url}"
-
-
-
-# url = get_gravatar_url('alice@example.com', size=150)
-# gravatar_exists = has_gravatar('bob@example.com')
-# profile_url = get_gravatar_profile_url('alice@example.com')
-# email_hash = calculate_gravatar_hash('alice@example.com')
