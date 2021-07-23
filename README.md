@@ -20,7 +20,9 @@ WTPA is a Web Application where you can view all the events that are happening i
 
 ## Screenshots
 
-<img src="https://thumbs.dreamstime.com/b/grunge-office-stamp-pending-3069098.jpg" alt="img1" width="75%"/>
+<img src="https://i.imgur.com/AXVHvhD.png" alt="img1" width="50%"/>
+<img src="https://i.imgur.com/eevQPFb.png" alt="img2" width="50%"/>
+<img src="https://i.imgur.com/1eDHjSG.png" alt="img3" width="50%"/>
 
 ## Tech
 - Html
