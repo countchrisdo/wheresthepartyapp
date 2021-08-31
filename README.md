@@ -1,6 +1,6 @@
 # Where's the Party App?
 
-![icon](https://i.imgur.com/8iUzrPc.png)
+<!-- ![icon](https://i.imgur.com/8iUzrPc.png) -->
 
 WTPA is a Web Application where you can view all the events that are happening in your city and around the world! 
 
