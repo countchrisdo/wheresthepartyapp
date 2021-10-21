@@ -27,14 +27,13 @@ WTPA is a Web Application where you can view all the events that are happening i
 ## Tech!
 
 - Html
-- CSS
+- Javascript
 - Materialize CSS
 - Django
-- Amazon S3
-- Google Maps API
-- Javascript
 - Python
-- Postgresql
+- Amazon S3 Storage
+- Google Maps API
+- PostgreSQL
 - Heroku
 
 ## Getting Started
