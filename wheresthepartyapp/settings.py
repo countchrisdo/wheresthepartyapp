@@ -126,4 +126,4 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 import django_on_heroku
 django_on_heroku.settings(locals())
 
-GOOGLE_MAPS_API_KEY = 'AIzaSyBcV9rVHi6x38zeugj7jTY5iO-z73bx1Qc'
+GOOGLE_MAPS_API_KEY = 'AIzaSyCWQfS5UP_vozgA8TzPEgvNau4dhtC8yv0'
