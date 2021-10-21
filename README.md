@@ -24,9 +24,6 @@ WTPA is a Web Application where you can view all the events that are happening i
 <img src="https://user-images.githubusercontent.com/7240924/126803967-55401e90-aca4-4245-abc9-81457c2ec5f1.gif" alt="img3" width="50%"/>
 <img src="https://i.imgur.com/eevQPFb.png" alt="img2" width="50%"/>
 
-
-
-
 ## Tech!
 
 - Html
@@ -44,8 +41,8 @@ WTPA is a Web Application where you can view all the events that are happening i
 - Make an account and broswe the site!
 - https://wheresthepartyapp.herokuapp.com/
 
-### Planning
-- [Trello Board](https://trello.com/b/vHUmJ3kK/wheres-the-party-app)
+### Running the app locally
+- python manage.py runserver
 
 ### Meet the Team
 - [Chris @countchrisdo](https://github.com/countchrisdo)
