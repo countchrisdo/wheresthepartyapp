@@ -37,7 +37,7 @@ WTPA is a Web Application where you can view all the events that are happening i
 - Heroku
 
 ## Getting Started
-- Make an account and broswe the site!
+- Make an account and browse the site!
 - https://wheresthepartyapp.herokuapp.com/
 
 ### Running the app locally
