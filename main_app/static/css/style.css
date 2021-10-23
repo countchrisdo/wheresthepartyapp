@@ -5,6 +5,14 @@ body {
   text-align: center;
 }
 
+main {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 /* position hard coded for chrome */
 #search-bar {
   position: fixed;
@@ -19,20 +27,6 @@ body {
   position: fixed;
   bottom: 93.5%;
   left: 25%;
-}
-
-#featured-events-title {
-  font-size: 5m;
-  color: black;
-  font-weight: bold;
-  margin-top: 10px;
-  padding: 10px;
-
-  text-align: center;
-
-  background-color: rgba(255, 255, 255, 0);
-
-  border-radius: 5px;
 }
 
 .carousel .carousel-item {
