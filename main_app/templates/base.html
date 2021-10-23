@@ -14,7 +14,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
-<body class="center-align blue lighten-5">
+<!-- This is the outermost layer -->
+<body class="center-align">
+  <!-- <body class="center-align blue lighten-5"> -->
   <header class="navbar-fixed">
     <nav>
       <div class="nav-wrapper blue">
@@ -54,6 +56,7 @@
       </div>
     </nav>
   </header>
+  <!-- this is where the main content goes -->
   <main class="container blue lighten-4 center-align">
     {% block content %} {% endblock %}
   </main>
