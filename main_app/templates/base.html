@@ -2,80 +2,126 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>WTPA</title>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'img/favicon.ico' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>WTPA</title>
-  <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</head>
+  <style>
+    @media screen and (max-width: 800px) {
+      #search-bar {
+        display: none;
+      }
+      #aboutUs{
+        display: none;
+      }
+      
+    }
+  </style>
 
-<!-- This is the outermost layer -->
-<body class="center-align" style="
-background-image: url(../static/svg/wavebg.svg); 
-background-repeat: no-repeat; 
-background-size:cover;"
->
-  <header class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper blue">
-        <ul>
-          <li>
-            <a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;WTPA!?&nbsp;&nbsp;</a>
-          </li>
-        </ul>
-        <ul class="right">
-          <li>
-            <form id="search-bar" method="POST" action="{% url 'search_events' %}">
-              {% csrf_token %}
-              <div class="input-field">
-                <input type="search" name="searched" placeholder="Search Events" />
-                <label class="label-icon" for="search"><i class="material-icons nav-icons">search</i></label>
-              </div>
-            </form>
-          </li>
+  <!-- This is the outermost layer -->
+  <body
+    class="center-align"
+    style="
+      background-image: url(../static/svg/wavebg.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    "
+  >
+    <header class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper blue">
+          <ul>
+            <li>
+              <a href="{% url 'home' %}" class="left brand-logo"
+                >&nbsp;&nbsp;WTPA!?&nbsp;&nbsp;</a
+              >
+            </li>
+          </ul>
+          <ul class="right">
+            <li>
+              <form
+                id="search-bar"
+                method="POST"
+                action="{% url 'search_events' %}"
+              >
+                {% csrf_token %}
+                <div class="input-field">
+                  <input
+                    type="search"
+                    name="searched"
+                    placeholder="Search Events"
+                  />
+                  <label class="label-icon" for="search"
+                    ><i class="material-icons nav-icons">search</i></label
+                  >
+                </div>
+              </form>
+            </li>
 
-          <li><a href="{% url 'about' %}">About Us</a></li>
+            <li id="aboutUs"><a href="{% url 'about' %}">About Us</a></li>
 
-          <li><a href="{% url 'index' %}">View All Events</a></li>
+            <li><a href="{% url 'index' %}">View All Events</a></li>
 
-          {% if user.is_authenticated %}
-          <li><a href="{% url 'events_create' %}">Add an Event</a></li>
-          <li>
-            <a href="{% url 'profile' %}"><i class="large material-icons">account_circle</i></a>
-          </li>
-          <li>
-            <a href="{% url 'logout' %}"><i class="large material-icons">power_settings_new</i></a>
-          </li>
-          {% else %}
-          <li><a href="{% url 'signup' %}">Sign Up</a></li>
-          <li><a href="{% url 'login' %}">Log In</a></li>
-          {% endif %}
-        </ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'events_create' %}">Add an Event</a></li>
+            <li>
+              <a href="{% url 'profile' %}"
+                ><i class="large material-icons">account_circle</i></a
+              >
+            </li>
+            <li>
+              <a href="{% url 'logout' %}"
+                ><i class="large material-icons">power_settings_new</i></a
+              >
+            </li>
+            {% else %}
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- this is where the main content goes -->
+    <main class="container blue lighten-4 center-align">
+      {% block content %} {% endblock %}
+    </main>
+
+    <footer class="page-footer blue">
+      <div class="footer-copyright">
+        <div class="container">
+          <a
+            class="footerlink"
+            href="https://github.com/countchrisdo/wheresthepartyapp"
+            >© 2021 Scrumdog Millionaires &nbsp;</a
+          >
+
+          <a
+            class="grey-text text-lighten-4 right"
+            href="https://github.com/countchrisdo/wheresthepartyapp"
+          >
+            <i class="small material-icons">whatshot</i></a
+          >
+        </div>
       </div>
-    </nav>
-  </header>
-  <!-- this is where the main content goes -->
-  <main class="container blue lighten-4 center-align">
-    {% block content %} {% endblock %}
-  </main>
-
-  <footer class="page-footer blue">
-    <div class="footer-copyright">
-      <div class="container">
-        <a class="footerlink" href="https://github.com/countchrisdo/wheresthepartyapp">© 2021 Scrumdog Millionaires
-          &nbsp;</a>
-
-        <a class="grey-text text-lighten-4 right" href="https://github.com/countchrisdo/wheresthepartyapp">
-          <i class="small material-icons">whatshot</i></a>
-      </div>
-    </div>
-  </footer>
-</body>
-
+    </footer>
+  </body>
 </html>
