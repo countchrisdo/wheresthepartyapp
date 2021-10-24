@@ -3,6 +3,7 @@
 {% block content %}
 
 <style>
+    
     #aboutText {
         font-size: 1.2em;
         font-family: 'Roboto', sans-serif;
@@ -11,6 +12,16 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
+
+    @media screen and (max-width: 800px) {
+      #aboutText {
+        font-size: 1em;
+      }
+      .lpTitle {
+        font-size: 2.5em;
+      }
+      
+    }
 </style>
 
 <h1 class="title"><b>Where's The Party App?!</b></h1>
@@ -18,7 +29,7 @@
 
  <div class="row">
     <div class="col s6">
-    <h2><u>Great Features!</u></h2>
+    <h2 class="lpTitle"><u>Great Features!</u></h2>
         
         <i class="large material-icons">camera_alt</i>
         <p>Photo Uploads</p>
@@ -28,7 +39,7 @@
         <p>Location based data</p>
     </div>
     <div class="col s6">
-    <h2><u>About</u></h2>
+    <h2 class="lpTitle"><u>About</u></h2>
 
         <p id="aboutText">Wanted to know what's poppin' in your area but have felt out of the loop? Nevermore, with <b>Where's the Party App!</b> You'll never not know where the party's at! We've built this app to help you find the party in your area, and we're always open to suggestions and improvements!
             
