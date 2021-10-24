@@ -34,12 +34,12 @@ main {
   padding: 10px;
 }
 
-/* #detail-h1 {
+#detail-h1 {
   font-size: 4.5em;
   font-weight: bold;
   padding: 10px;
   line-height: 50px !important;
-} */
+}
 
 #event-submit {
   margin-top: 2vh;
