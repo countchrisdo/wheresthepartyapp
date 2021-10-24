@@ -1,35 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="card">
-  <div class="card-content">
-    <b><span class="card-title" id="detail-h1">{{ event.event_name }}</span></b>
-  </div>
+<div style="
+background-color: #f1f1f1;
+padding: 1vh;
+">
+  <h1 style="
+    text-align:center;
+    font-family: 'Lobster', cursive;
+    background-color: #f1f1f1;
+    ">
+    <b>{{ event.event_name }}</b>
+  </h1>
 
-  <!-- photo markup -->
+  <!-- photo div -->
+  <div class="card-panel">
   {% for photo in event.photo_set.all %}
-  <img class="responsive-img card-panel" src="{{photo.url}}">
+  <img class="responsive-img" src="{{photo.url}}">
   {% empty %}
   <div class="card-panel teal-text center-align">No Photos Uploaded</div>
   {% endfor %}
 
   {% if user == event.user %}
-  <form action="{% url 'add_photo' event.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+  <form action="{% url 'add_photo' event.id %}" enctype="multipart/form-data" method="POST" >
     {% csrf_token %}
     <input type="file" name="photo-file">
     <br><br>
     <input type="submit" class="btn" value="Upload Photo">
     {% endif %}
   </form>
-
-  <h5>Event Host: {{ event.user }}</h5>
+</div>
+  <h5><b>Event Host:</b> {{ event.user }}</h5>
+  <h5><b>Event Description:</b> <br><br> {{ event.description }}</h5>
   <br>
   <hr>
-  <h5>Event Description: <br><br> {{ event.description }}</h5>
-  <br>
-
-  <hr>
-
   <div class="row">
     <div class="col s6">
       <h5>Date: {{ event.date }}</h5>
@@ -108,7 +112,10 @@
   </div>
 </div>
 
-<div class="card-action">
+<div style="
+background-color: #f1f1f1;
+padding-bottom: 1vh;
+">
   {% if user == event.user %}
   <a href="{% url 'events_update' event.id %}">Edit Event</a> |
   <a href="{% url 'events_delete' event.id %}">Delete Event</a>
@@ -132,7 +139,7 @@
     .then(data => {
       validAddress = data.status === "OK";
       if (validAddress) geoResults = data.results[0];
-      console.log(geoResults, validAddress)
+      // console.log(geoResults, validAddress)
     })
     .then(() => {
       if (validAddress) {

@@ -5,9 +5,15 @@
 <h1>Event List</h1>
 
 {% for event in events %}
-  <div class="card">
+  <div class="card" style="
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  ">
     <a href="{% url 'detail' event.id %}">
-      <div class="card-content">
+      <div class="card-content" >
         <span class="card-title">{{ event.event_name }}</span>
         <p>Host: {{ event.user }}</p>
         <p>Address: {{ event.address }}</p>

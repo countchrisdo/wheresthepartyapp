@@ -1,5 +1,19 @@
 {% extends 'base.html' %} {% block content %}
 
+<style>
+  #needHelp:hover {
+    color: #0a0062;
+  }
+
+  #event-submit {
+    margin-bottom: 2vh;
+  }
+
+  label {
+    font-size: 1.2em;
+  }
+</style>
+
 <h1>Create your Event!</h1>
 <h3>
   Thank you for sharing your upcoming event on<br />
@@ -7,7 +21,7 @@
 </h3>
 
 <details>
-  <summary>Need help?</summary>
+  <summary  id="needHelp">Need help?</summary>
   <h5>
     Want to make sure your event can be discovered by the most amount of people?
   </h5>
@@ -27,7 +41,7 @@
 
 <!-- Leaving the action empty makes the form post to the same url used to display it -->
 <form id="Event-Creation-Form" action="" method="post">
-  <!-- DOn't forget security token -->
+  <!-- Don't forget security token -->
   {% csrf_token %}
   <table>
     <!-- Render the inputs inside of <tr>s & <td>s -->
