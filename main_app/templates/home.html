@@ -9,6 +9,14 @@
         padding-bottom: 5vh;
     }
 
+    .lpIconDivs {
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+    }
+
     .carousel-image {
         max-height: 20vh;
     }
@@ -39,13 +47,20 @@
  <div class="row">
     <div class="col s6">
     <h2 class="lpTitle"><u>Features</u></h2>
-        
+        <div class="lpIconDivs">
+            <div>
         <i class="large material-icons">camera_alt</i>
         <p>Photo Uploads</p>
+    </div>
+    <div>
         <i class="large material-icons">forum</i>
         <p>Comments</p>
+    </div>
+    <div>
         <i class="large material-icons">gps_fixed</i>
         <p>Location based data</p>
+    </div>
+    </div>
     </div>
     <div class="col s6">
     <h2 class="lpTitle"><u>About</u></h2>
@@ -69,7 +84,7 @@
 
 
 <section id="featured-section" class="blue lighten-5">
-<h2><u>Featured Events</u> </h2>
+<h2><u>Featured Events</u></h2>
 
 
 <div class="carousel carousel-slider light-blue lighten-5" style="
