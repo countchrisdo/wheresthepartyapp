@@ -1,17 +1,17 @@
-body {
+/* body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
   text-align: center;
-}
+} */
 
-main {
+/* main {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
-}
+} */
 
 /* position hard coded for chrome */
 #search-bar {
