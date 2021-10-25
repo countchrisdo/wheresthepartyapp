@@ -8,7 +8,7 @@
 main {
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 20px;
+  padding-top: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
