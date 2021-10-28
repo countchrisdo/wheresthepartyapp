@@ -2,7 +2,7 @@
 
 <!-- ![icon](https://i.imgur.com/8iUzrPc.png) -->
 
-WTPA is a Web Application where you can view all the events that are happening in your city and around the world! 
+WTPA is a Web Application where you can view all the events that are happening in your city and around the world!
 
 [CLICK ME!](https://wheresthepartyapp.herokuapp.com/)
 
@@ -16,7 +16,6 @@ WTPA is a Web Application where you can view all the events that are happening i
 - View Event's Location
 - Add Comments and speak to event co-ordinators
 - View your profile to manage your created events
-
 
 ## Demo
 
@@ -37,18 +36,22 @@ WTPA is a Web Application where you can view all the events that are happening i
 - Heroku
 
 ## Getting Started
+
 - Make an account and browse the site!
 - https://wheresthepartyapp.herokuapp.com/
 
 ### Running the app locally
+
 - python manage.py runserver
 
 ### Meet the Team
+
 - [Chris @countchrisdo](https://github.com/countchrisdo)
 - [Andy @sunsetdee](https://github.com/sunsetdee)
 - [Jeremy @jhotz2112](https://github.com/jhotz2112)
 
 ### What's next for WTPA?
+
 - ~~Google Maps Api~~
 - ~~Search Bar~~
 - ~~User Authentication~~
@@ -58,5 +61,3 @@ WTPA is a Web Application where you can view all the events that are happening i
 - Users can edit their profile
 - Users can click stars to rate events
 - Sorting by by different criteria
-
-
